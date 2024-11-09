@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~ This piece of work is to enhance postalsystem project functionality.      ~
+  ~                                                                           ~
+  ~ Author:    eomisore                                                       ~
+  ~ File:      PostalSystem.wsdl                                              ~
+  ~ Created:   21/10/2024, 18:16                                              ~
+  ~ Modified:  21/10/2024, 18:16                                              ~
+  ~                                                                           ~
+  ~ Copyright (c)  2024.  Aerosimo Ltd                                        ~
+  ~                                                                           ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a   ~
+  ~ copy of this software and associated documentation files (the "Software"),~
+  ~ to deal in the Software without restriction, including without limitation ~
+  ~ the rights to use, copy, modify, merge, publish, distribute, sublicense,  ~
+  ~ and/or sell copies of the Software, and to permit persons to whom the     ~
+  ~ Software is furnished to do so, subject to the following conditions:      ~
+  ~                                                                           ~
+  ~ The above copyright notice and this permission notice shall be included   ~
+  ~ in all copies or substantial portions of the Software.                    ~
+  ~                                                                           ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,           ~
+  ~ EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES           ~
+  ~ OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND                  ~
+  ~ NONINFINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT                ~
+  ~ HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,              ~
+  ~ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING              ~
+  ~ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE                ~
+  ~ OR OTHER DEALINGS IN THE SOFTWARE.                                        ~
+  ~                                                                           ~
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+<definitions
+        xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata"
+        xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="https://aerosimo.com/api/ws/postalsystem"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/"
+        targetNamespace="https://aerosimo.com/api/ws/postalsystem" name="PostalSystemService">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="https://aerosimo.com/api/ws/postalsystem"
+                        schemaLocation="../xsd/PostalSystem.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="sendEmail">
+        <part name="parameters" element="tns:sendEmail"/>
+    </message>
+    <message name="sendEmailResponse">
+        <part name="parameters" element="tns:sendEmailResponse"/>
+    </message>
+    <portType name="PostalSystem">
+        <operation name="sendEmail">
+            <input wsam:Action="https://aerosimo.com/api/ws/postalsystem/PostalSystem/sendEmailRequest"
+                   message="tns:sendEmail"/>
+            <output wsam:Action="https://aerosimo.com/api/ws/postalsystem/PostalSystem/sendEmailResponse"
+                    message="tns:sendEmailResponse"/>
+        </operation>
+    </portType>
+    <binding name="PostalSystemPortBinding" type="tns:PostalSystem">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="sendEmail">
+            <soap12:operation soapAction=""/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="PostalSystemService">
+        <port name="PostalSystemPort" binding="tns:PostalSystemPortBinding">
+            <soap12:address location="https://ominet.aerosimo.com:8443/postalsystem/ws/postalsystem"/>
+        </port>
+    </service>
+</definitions>
