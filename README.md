@@ -91,8 +91,8 @@ The required dependencies are defined in `pom.xml`. Below are the key dependenci
 
    Start TomEE and access the application:
 
-    - SOAP Service: WSDL at `http://localhost:8080/postalsystem/ws/postalsystem?wsdl`
-    - Web Interface: `http://localhost:8080/postalsystem/index.jsp`
+    - SOAP Service: WSDL at `http://localhost:8081/postalsystem/ws/postalsystem?wsdl`
+    - Web Interface: `http://localhost:8081/postalsystem/index.jsp`
 
 ## Detailed Explanation of Components
 
